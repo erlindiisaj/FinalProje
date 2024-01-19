@@ -214,6 +214,21 @@ Grafikte gördüğü gibi Preictions ve Actual Values çok yakındır.
 
 
 
+# Q7 : Sonuç değerlendirme, tavsiyeler
+
+Doğrusal regresyon modelinden elde edilen sonuçlar, veri setine dayalı satış fiyatlarını tahmin etme konusunda değerli içgörüler sunmaktadır. Model, satış fiyatlarını tahmin etme ana problemine belli bir ölçüde çözüm sunar. Çeşitli faktörler ile satış fiyatı arasındaki ilişkileri anlamak için bir temel sağlar. Bununla birlikte, doğruluğunu artırmak için sürekli optimize etme gerekebilir.
+
+Müşteriler, model tahminlerini bir aracın satış fiyatını tahmin etme referansı olarak kullanabilirler. Ancak, herhangi bir tahmin modelinin içerdiği belirsizlikleri ve sınırlamaları kabul etmek önemlidir. Veri setinde yakalanmayan gerçek dünya faktörleri fiyatları etkileyebilir.
+
+Bazı güçlü yönler satış fiyatlarının nicel bir tahminini sağlaması ve fiyatları etkileyen faktörler konusunda içgörü sunması söyleyebilirz. Zayıf yönler veri setinin kalitesi ve temsil ediciliği ile sınırlı olması ve değişkenler arasındaki ilişkiyi doğrusal olarak varsayması.
+
+Bu çalışmayı gelecekte geliştirmeyi düşünenler için birkaç değerli öneri düşünülebilir. İlk olarak, veri setini daha geniş ve temsilci değişken koleksiyonu ile zenginleştirmek, modelin tahmin yeteneklerini önemli ölçüde güçlendirebilir. Doğrusal regresyonun ötesine geçerek, doğrusal olmayan ilişkileri yakalayabilen daha karmaşık modellere yönelme, başka bir geliştirme yöntemi olarak durmaktadır.
+
+Model parametrelerini ince ayar yapmak, farklı özellikleri ve etkileşimleri düşünerek performansı önemli ölçüde artırabilir. Ayrıca, çeşitli perspektifler sunarak modelin gelişimine zenginlik katabilecek ilgili topluluklara katılım ve benzer hedeflere sahip projelerde yer almak da önemli bir adımdır.
+
+
+
+
 
 
 ```{r message=FALSE, warning=FALSE, include=FALSE}
