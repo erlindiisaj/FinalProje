@@ -138,3 +138,88 @@ ggplot(as.data.frame(as.table(correlation_data)), aes(x = Var1, y = Var2, fill =
 
 Correlation Heatmap'ten "Present Price" (Aracın yeni satın alındığı fiyat) ve "Selling Price" (Satış Fiyatı) yüksek correlation değerlerine sahiptir. Bu özellik olan "Present Price"ı kullanarak hedef çıktımız olan "Selling_price"ı tahmin edebiliriz.
 
+
+
+# Q6 : Veri analizi
+
+2D grafiğinde bu noktalara uyacak bir çizgi oluşturmaktır. Burada x özelliğimizi (Present Price) temsil eder ve y'yi (Selling Price) tahmin etmektir. 2D (X ve Y) koordinatlardaki bir çizginin formülü şu şekildedir:
+
+y = w * x + b
+
+Eğer yukarıdaki formülde Selling Price ve Present Price yerine koyarsak, şu şekilde görünecektir:
+
+selling_price = w * present_price + b
+
+Amacımız, w ve b parametrelerinin değerlerini bulmaktır ki bu değerler, verilere en iyi uyan bir çizgi oluştursun. Bu kullandığımız yönteme lineer regresyon denir, buradaki denklem lineer regresyon modeli olarak bilinir. Çünkü "Present Price" ve "Selling Price" arasındaki korelasyonu bir doğru çizgide formüle eder. 'w' ve 'b' genellikle model parametreleri veya ağırlıkları olarak bilinir.
+
+Lineer regresyon kullanırken, verilerinizi train ve test kümelerine ayırmak yaygın bir uygulamadır. Bu, modelinizi verilerin bir alt kümesinde train ve ardından hiç görmediği başka bir alt kümede performansını değerlendirmenize olanak tanır. Bu, modelinizin yeni, görülmemiş verilere ne kadar iyi genelleme yaptığını değerlendirmenize yardımcı olur.
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+library(caret)
+set.seed(123)
+splitIndex <- createDataPartition(data$Selling_Price, p = 0.8, list = FALSE)
+trainData <- data[splitIndex, ]
+testData <- data[-splitIndex, ]
+```
+
+
+**Train için kullanılan verileri.**
+Bu, veri setinin en büyük alt kümesidir ve modelini train etmek için kullanılır. Train seti genellikle veri setinin yaklaşık olarak %80'ini kapsar.
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+library(dplyr)
+as_tibble(trainData)
+```
+
+
+
+
+
+**Test için kullanılan verileri.**
+Bu, modelin eğitim veya doğrulama aşamasında hiç görmediği verilerdir. Tüm train ve doğrulama işlemleri tamamlandıktan sonra modelin performansını değerlendirmek için kullanılır.
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+as_tibble(testData)
+```
+
+
+
+
+Şimdi modeli oluşturalım ve oluşturulan modelin sonuçlarını kontrol etmek için test verilerini kullanalım. Bizim modelimizi değerlendirmek için MSE kullanacağız. MSE, Ortalama Kare Hatası'nın kısaltmasıdır. Bu, regresyon problemlerinde gerçek ve tahmin edilen değerler arasındaki ortalama karesel farkı ölçmek için yaygın olarak kullanılan bir metriktir. Daha düşük bir MSE, daha iyi bir model performansını gösterir, çünkü bu, tahmin edilen değerlerin gerçek değerlere daha yakın olduğu anlamına gelir.
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+
+
+model <- lm(Selling_Price ~ Year + Present_Price + Kms_Driven + Owner + Transmission + Seller_Type + Fuel_Type , data = trainData)
+
+
+predictions <- predict(model, testData)
+
+residuals <- testData$Selling_Price - predictions
+mse <- mean(residuals^2)
+
+print(paste("Mean Squared Error:", mse))
+
+```
+
+
+
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+# Visualize predictions vs. actual values
+plot(predictions, testData$Selling_Price, main = "Predictions vs. Actual Values", xlab = "Actual Values", ylab = "Predictions")
+abline(a = 0, b = 1, col = "red")  # Add a diagonal line for reference
+```
+Grafikte gördüğü gibi Preictions ve Actual Values çok yakındır.
+
+
+
+
+
+
+
+```{r message=FALSE, warning=FALSE, include=FALSE}
+library(testthat)
+path <- "q1_tests_erlindi_isaj_200401114.R"
+test_file(path)
+```
+
+
