@@ -69,3 +69,40 @@ plot(data$Year, data$Selling_Price,
 
 Bu grafikten, yıl ne kadar yeni ise fiyatın o kadar yüksek olduğunu söyleyebiliriz. Bu bağlantıyı, fiyat tahminimize yardımcı olmak için daha sonra kullanabiliriz.
 
+
+
+
+# Q4 : Veri seti ön işlemesi 
+
+ Fuel_Type sütunu *character* tipinden  *factor* tipine dönüştürülmüştür.
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+data$Fuel_Type <- as.factor(data$Fuel_Type)
+```
+
+ Seller_type sütunu *character* tipinden  *factor* tipine dönüştürülmüştür.
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+data$Seller_Type <- as.factor(data$Seller_Type)
+```
+
+ Transmission sütunu *character* tipinden  *factor* tipine dönüştürülmüştür.
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+data$Transmission <- as.factor(data$Transmission)
+```
+
+ Verileri *numeric* tipine dönüştürülmüştür.
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+data$Year <- as.numeric(data$Year)
+data$Kms_Driven <- as.numeric(data$Kms_Driven)
+data$Owner <- as.numeric(data$Owner)
+data$Fuel_Type <- as.numeric(data$Fuel_Type)
+data$Seller_Type <- as.numeric(data$Seller_Type)
+data$Transmission <- as.numeric(data$Transmission)
+```
+ 'Car_name' sütununu faktörlere dönüştürmek istersek, seviye sayısı çok yüksek olabilir, bu nedenle bu sütun veri setinde gerekli değildir.
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+data <- data[, -which(names(data) == "Car_Name")]
+```
+Üzerinde çalışılacak olan sütunlarda, NA değerlerinin temizlenmesi gerek yok.
+
+

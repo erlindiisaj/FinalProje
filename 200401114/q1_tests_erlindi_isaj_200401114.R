@@ -31,3 +31,22 @@ test_that("Present_Price column numeric olmalı", {
 test_that("Kms_Driven column numeric olmalı", {
   expect_true(is.numeric(data$Kms_Driven))
 })
+
+
+
+test_that("Transmission column numeric olmalı", {
+  expect_true(is.numeric(data$Transmission))
+})
+
+test_that("Fuel_Type column numeric olmalı", {
+  expect_true(is.numeric(data$Fuel_Type))
+})
+
+test_that("Seller_Type column numeric olmalı", {
+  expect_true(is.numeric(data$Seller_Type))
+})
+
+
+test_that("Car_Name column silinmiş olmalı", {
+  expect_false("Car_Name" %in% names(data))
+})
