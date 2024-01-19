@@ -1,0 +1,9 @@
+---
+title: 'Proje Rapor : Erlindi Isaj 200401114'
+output:
+  html_document:
+    df_print: paged
+---
+# Q1 : Problem tanımı
+
+Uygun fiyat bulma konusundaki sorunları çözmek, işletme performansını artırmak ve müşteri memnuniyetini güçlendirmek için önemlidir. Bu problemin başa çıkmak için alınabilecek bazı genel stratejiler ihtiyacımız var. Kullanılmış araba fiyatları, aracın değer kaybı, bakım geçmişi ve genel mekanik durumu gibi etkenlerle belirlenir. Piyasadaki arz ve talep de kullanılmış araba fiyatlarını etkileyen önemli faktörler arasındadır. Bu nedenle, bir aracın fiyatını belirlemek için dikkatlice değerlendirme yapmak önemlidir.
