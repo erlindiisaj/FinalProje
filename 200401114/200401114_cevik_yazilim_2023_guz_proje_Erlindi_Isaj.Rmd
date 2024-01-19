@@ -106,3 +106,35 @@ data <- data[, -which(names(data) == "Car_Name")]
 Üzerinde çalışılacak olan sütunlarda, NA değerlerinin temizlenmesi gerek yok.
 
 
+
+# Q5 : Veri mühendisliği
+
+Daha önce gördüğümüz gibi bazı sütunlar diğerlerine göre satış fiyatı ile daha yakından ilişkilidir. Mesela "Selling_Price" ve "Present_Price" sütunlarının birbirleriyle ilişkili olup olmadığını kontrol edelim:
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+plot(data$Present_Price, data$Selling_Price, 
+     main = "Present_price and Selling_price", 
+     xlab = "Present Price", 
+     ylab = "Selling Price", 
+     pch = 16, 
+     col = "blue"
+)
+```
+
+
+
+
+Görüldüğü gibi, mevcut fiyat ne kadar yüksekse, satış fiyatı da o kadar yüksek. Böylece bu ilişki, correlation coefficient adı verilen bir ölçü kullanılarak sayısal olarak ifade edilebilir. Correlation coefficient, iki değişken arasındaki doğrusal ilişkinin gücünü ve yönünü ölçen istatistiksel bir ölçüdür ve -1 ile 1 arasında bir değere sahiptir. 1 korelasyon katsayısı, mükemmel bir pozitif doğrusal ilişkiyi gösterir, yani bir değişken arttığında, diğer değişken de orantılı olarak artar. -1 korelasyon katsayısı, mükemmel bir negatif doğrusal ilişkiyi gösterir, yani bir değişken arttığında, diğer değişken orantılı olarak azalır. 0 korelasyon katsayısı, iki değişken arasında doğrusal bir ilişki olmadığını gösterir.
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+library(ggplot2)
+correlation_data <- cor(data)
+ggplot(as.data.frame(as.table(correlation_data)), aes(x = Var1, y = Var2, fill = Freq)) +
+  geom_tile(color = "white") +
+  scale_fill_gradient(low = "white", high = "#ff1a00") +
+  theme_minimal()
+```
+
+
+
+Correlation Heatmap'ten "Present Price" (Aracın yeni satın alındığı fiyat) ve "Selling Price" (Satış Fiyatı) yüksek correlation değerlerine sahiptir. Bu özellik olan "Present Price"ı kullanarak hedef çıktımız olan "Selling_price"ı tahmin edebiliriz.
+
