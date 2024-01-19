@@ -15,3 +15,57 @@ Projenin temel amacı, araç fiyatlarını öngörebilen bir model geliştirmek 
 Projede kullanılacak veri seti, çeşitli araç modelleri ve bu modellerin özellikleriyle ilişkilendirilmiş fiyat bilgilerini içermektedir. Veri setinin temizlenmesi, eksik verilerin işlenmesi ve sayısal özelliklerin standartlaştırılması gibi veri ön işleme adımları gerçekleştirilecek. Ardından, veri seti üzerinde keşifsel veri analizi yapılacak.
 
 Araç fiyatlarını etkileyen faktörleri belirleyip, bu faktörlerin modelleme için uygun hale getirilmesi sağlanacaktır. Doğrusal regresyon modeli, seçilen özelliklerle araç fiyatlarını en iyi şekilde açıklayabilecek bir matematiksel ilişkiyi tanımlamak üzere eğitilecektir. Modelin performansı, test veri kümesi üzerinde değerlendirilecek ve bu değerlendirme sonuçlarına dayanarak modelin ayarlamaları yapılacaktır. Ayrıca, modelin sunduğu katsayılar ve diğer çıktılar analiz edilerek, araç fiyatlarını etkileyen faktörlerin anlamı üzerine derinlemesine bir anlayış elde edilecektir.
+
+# Q3 : Veri seti keşifsel analizi
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+filename <- "car data.csv"
+data <- read.csv(filename)
+
+summary(data)
+```
+
+
+Dataset, 301 satır ve 9 sütunu içeriyor. Her satır, bir araç hakkında bilgi içeriyor. Amacımız, "Selling_Price" sütunundaki değeri diğer sütunlardaki bilgileri kullanarak tahmin etmektir.
+
+Her sütunun veri türünü kontrol edelim:
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+str(data)
+```
+
+Year, Selling_Price, Current_Price, owner ve kms_driven bilgisi numeric verilerdir, ancak Car_Name, Fuel_Type, Seller_Type ve Transmission character verilerdir.
+
+Sayısal sütunlar mantıklı görünüyor, herhangi bir sütunda anormallik bulunmuyor. Sadece selling_price ve current_price gibi görünüyor ki gerçek araba fiyatlarının kodlamasıdır. Ancak, bu, değerlerin her zaman veri sağlayıcıdan gerçek değerlerine çevrilebileceği için analizimizi etkilemeyecek. 
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+hist(data$Year, 
+     main = "Yılın dağılımı", 
+     xlab = "Yıl",            
+     ylab = "Sayı",         
+     col = "skyblue",             
+     border = "black", 
+     xlim= c(2000, 2020),
+     breaks = 15,  
+
+)
+```
+
+
+
+Yıl sütunu numeric bir sütun olduğundan, maksimum değerin 2018 ve minimum değerin 2003 olduğunu görebiliriz. Histogram kullanarak araç sayısının, yıl daha yeni olduğunda artırılmasını görebiliriz.
+
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+plot(data$Year, data$Selling_Price, 
+     main = "Year and Selling_price", 
+     xlab = "Year", 
+     ylab = "Selling Price", 
+     pch = 16, 
+     col = "blue"
+)
+```
+
+
+
+Bu grafikten, yıl ne kadar yeni ise fiyatın o kadar yüksek olduğunu söyleyebiliriz. Bu bağlantıyı, fiyat tahminimize yardımcı olmak için daha sonra kullanabiliriz.
+
