@@ -7,3 +7,11 @@ output:
 # Q1 : Problem tanımı
 
 Uygun fiyat bulma konusundaki sorunları çözmek, işletme performansını artırmak ve müşteri memnuniyetini güçlendirmek için önemlidir. Bu problemin başa çıkmak için alınabilecek bazı genel stratejiler ihtiyacımız var. Kullanılmış araba fiyatları, aracın değer kaybı, bakım geçmişi ve genel mekanik durumu gibi etkenlerle belirlenir. Piyasadaki arz ve talep de kullanılmış araba fiyatlarını etkileyen önemli faktörler arasındadır. Bu nedenle, bir aracın fiyatını belirlemek için dikkatlice değerlendirme yapmak önemlidir.
+
+# Q2 : Proje amacı
+
+Projenin temel amacı, araç fiyatlarını öngörebilen bir model geliştirmek için veri analizi ve doğrusal regresyon yöntemlerini kullanmaktır. Bu kapsamlı proje, veri bilimi, istatistik ve makine öğrenmesi alanlarındaki temel konseptleri uygulamak amacıyla tasarlanmıştır.
+
+Projede kullanılacak veri seti, çeşitli araç modelleri ve bu modellerin özellikleriyle ilişkilendirilmiş fiyat bilgilerini içermektedir. Veri setinin temizlenmesi, eksik verilerin işlenmesi ve sayısal özelliklerin standartlaştırılması gibi veri ön işleme adımları gerçekleştirilecek. Ardından, veri seti üzerinde keşifsel veri analizi yapılacak.
+
+Araç fiyatlarını etkileyen faktörleri belirleyip, bu faktörlerin modelleme için uygun hale getirilmesi sağlanacaktır. Doğrusal regresyon modeli, seçilen özelliklerle araç fiyatlarını en iyi şekilde açıklayabilecek bir matematiksel ilişkiyi tanımlamak üzere eğitilecektir. Modelin performansı, test veri kümesi üzerinde değerlendirilecek ve bu değerlendirme sonuçlarına dayanarak modelin ayarlamaları yapılacaktır. Ayrıca, modelin sunduğu katsayılar ve diğer çıktılar analiz edilerek, araç fiyatlarını etkileyen faktörlerin anlamı üzerine derinlemesine bir anlayış elde edilecektir.
